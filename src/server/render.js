@@ -7,8 +7,9 @@ import {getServerStore} from '../store';
 import {renderRoutes, matchRoutes} from 'react-router-config';
 
 export default function (req, res) {
-    // csses  收集每一个组件引入的样式
-    let context = {csses: []};
+    // cssArr  收集每一个组件引入的样式
+    let context = {cssArr: []};
+
     // 获取服务端的 store
     let store = getServerStore(req);
 
@@ -24,6 +25,8 @@ export default function (req, res) {
     matchedRoutes.forEach(item => {
         if (item.route.loadData) {
             promises.push(new Promise(function (resolve) {
+                // 防止一个接口的失败，影响页面的渲染
+                // 不管调用接口是否失败，都让它成功
                 return item.route.loadData(store).then(resolve, resolve);
             }));
         }
@@ -39,13 +42,19 @@ export default function (req, res) {
                 </StaticRouter>
             </Provider>
         );
-        let cssStr = context.csses.join('\n');
+
+        // 渲染完成之后，再获取 css 样式
+        let cssStr = context.cssArr.join('\n');
+
         if (context.action == 'REPLACE') {
+            // 重定向状态码是 302
             return res.redirect(302, context.url);
-            //res.statusCode = 302;
         } else if (context.notFound) {
+            // notFound 为 true，那么访问的页面不存在，需要将状态码设置为 404
+            // 如果不设置的话，状态码默认是 200
             res.statusCode = 404;
         }
+
         res.send(`
             <html>
                 <head>

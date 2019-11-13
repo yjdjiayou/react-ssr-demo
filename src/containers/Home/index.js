@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import actions from '../../store/actions/home';
 class Home extends Component{
     componentWillMount(){
-        // 注意：这里访问的是客户端的仓库
         if(this.props.list.length == 0){
             this.props.getHomeList();
         }

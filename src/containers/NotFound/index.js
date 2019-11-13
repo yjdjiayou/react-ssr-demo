@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 class NotFound extends Component{
     componentWillMount(){
         if(this.props.staticContext){
+            // 给静态路由的上下文添加一个 notFound = true 的键值对
             this.props.staticContext.notFound = true;
         }
     }
