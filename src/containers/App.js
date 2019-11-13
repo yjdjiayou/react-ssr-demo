@@ -9,6 +9,7 @@ class App extends Component {
     render() {
         return (
             <Fragment>
+                {/*因为 Header 组件不是通过静态路由渲染出来的，所以需要手动给它传递一个属性值*/}
                 <Header staticContext={this.props.staticContext}/>
                 <div className="container" className={styles.app}>
                     {renderRoutes(this.props.route.routes)}

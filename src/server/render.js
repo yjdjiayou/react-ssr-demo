@@ -46,7 +46,7 @@ export default function (req, res) {
         // 渲染完成之后，再获取 css 样式
         let cssStr = context.cssArr.join('\n');
 
-        if (context.action == 'REPLACE') {
+        if (context.action === 'REPLACE') {
             // 重定向状态码是 302
             return res.redirect(302, context.url);
         } else if (context.notFound) {
