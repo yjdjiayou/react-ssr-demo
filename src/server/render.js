@@ -1,10 +1,13 @@
 import React, {Fragment} from 'react';
 import {StaticRouter, matchPath, Route} from 'react-router-dom';
+import {Helmet} from 'react-helmet';
 import routes from '../routes';
 import {renderToString} from 'react-dom/server';
 import {Provider} from 'react-redux';
 import {getServerStore} from '../store';
 import {renderRoutes, matchRoutes} from 'react-router-config';
+
+const helmet = Helmet.renderStatic();
 
 export default function (req, res) {
     // cssArr  收集每一个组件引入的样式
@@ -54,11 +57,11 @@ export default function (req, res) {
             // 如果不设置的话，状态码默认是 200
             res.statusCode = 404;
         }
-
         res.send(`
             <html>
                 <head>
-                <title>React-SSR</title>
+                ${helmet.title.toString()}
+                ${helmet.meta.toString()}
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" />
                 <style>${cssStr}</style>
                 </head>

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Helmet} from 'react-helmet';
 import {connect} from 'react-redux';
 import actions from '../../store/actions/home';
 
@@ -10,24 +11,31 @@ class Home extends Component {
     //         this.props.getHomeList();
     //     }
     // }
-    
+
     // componentDidMount 在服务器端是不执行的
-    componentDidMount(){
+    componentDidMount() {
         console.log(666);
     }
+
     render() {
         return (
-            <div className="row">
-                <div className="col-md-6 col-md-offset-3">
-                    <ul className="list-group">
-                        {
-                            this.props.list.map(item => (
-                                <li key={item.id} className="list-group-item">{item.name}</li>
-                            ))
-                        }
-                    </ul>
+            <>
+                <Helmet>
+                    <title>React-SSR</title>
+                    <meta name="description" content="首页描述"/>
+                </Helmet>
+                <div className="row">
+                    <div className="col-md-6 col-md-offset-3">
+                        <ul className="list-group">
+                            {
+                                this.props.list.map(item => (
+                                    <li key={item.id} className="list-group-item">{item.name}</li>
+                                ))
+                            }
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            </>
         )
     }
 }
