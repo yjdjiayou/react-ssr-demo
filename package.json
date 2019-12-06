@@ -1,5 +1,5 @@
 {
-  "name": "zhufeng_ssr",
+  "name": "easy-ssr-demo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -22,8 +22,8 @@
     "express-http-proxy": "^1.5.1",
     "express-session": "^1.15.6",
     "isomorphic-style-loader": "^4.0.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
     "react-helmet": "^5.2.1",
     "react-redux": "^6.0.0",
     "react-router-config": "^4.4.0-beta.6",

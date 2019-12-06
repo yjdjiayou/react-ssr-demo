@@ -5,16 +5,16 @@ import actions from '../../store/actions/home';
 
 class Home extends Component {
 
-    // componentWillMount() {
-    //     console.log(666);
-    //     if (this.props.list.length == 0) {
-    //         this.props.getHomeList();
-    //     }
-    // }
+    componentWillMount() {
+        console.log('Home 组件即将挂载');
+        if (!this.props.list || !this.props.list.length) {
+            this.props.getHomeList();
+        }
+    }
 
     // componentDidMount 在服务器端是不执行的
     componentDidMount() {
-        console.log(666);
+        console.log('你看我在服务端执不执行');
     }
 
     render() {
